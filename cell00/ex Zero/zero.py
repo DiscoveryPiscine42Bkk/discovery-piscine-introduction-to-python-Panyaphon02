@@ -2,7 +2,7 @@ def main():
     farm_tasks = []
 
     while True:
-        print("\n--- ระบบจัดการงานในฟาร์ม ---")
+        print("\n--- Smart farm ---")
         print("1. เพิ่มงานในฟาร์ม")
         print("2. แสดงรายการงานทั้งหมด")
         print("3. ลบงาน")
@@ -20,14 +20,15 @@ def main():
         elif choice == "4":
             summarize_tasks(farm_tasks)
         elif choice == "5":
-            print("ออกจากโปรแกรมแล้ว ขอบคุณที่ใช้บริการ")
+            print("ขอบคุณที่ใช้โปรแกรม Smart farm!")
             break
         else:
             print("กรุณาเลือกเมนูให้ถูกต้อง (1-5)")
 
 def add_task(tasks):
-    name = input("Samrt Farm Task Organizer: ")
-    task_type = input("ประเภทของงาน (เช่น ให้อาหาร, รดน้ำ, เก็บเกี่ยว): ")
+    name = input("ป้อนชื่องาน: ")
+    task_type = input("ประเภทของงาน (เช่น พืชฝผัก/ปสุสัต/อื่นๆ): ")
+    from datetime import datetime
     tasks.append({'name': name, 'type': task_type})
     print("เพิ่มงานเรียบร้อยแล้ว")
 
