@@ -26,7 +26,7 @@ def main():
             print("กรุณาเลือกเมนูให้ถูกต้อง (1-5)")
 
 def add_task(tasks):
-    name = input("ชื่อของงาน: ")
+    name = input("Samrt Farm Task Organizer: ")
     task_type = input("ประเภทของงาน (เช่น ให้อาหาร, รดน้ำ, เก็บเกี่ยว): ")
     tasks.append({'name': name, 'type': task_type})
     print("เพิ่มงานเรียบร้อยแล้ว")
