@@ -1,69 +1,66 @@
-def main():
-    farm_tasks = []
+import sys
+from collections import defaultdict
 
-    while True:
-        print("\n--- Smart farm ---")
-        print("1. เพิ่มงานในฟาร์ม")
-        print("2. แสดงรายการงานทั้งหมด")
-        print("3. ลบงาน")
-        print("4. สรุปงานในแต่ละประเภท")
-        print("5. ออกจากโปรแกรม")
+tasks = []
 
-        choice = input("กรุณาเลือกเมนู (1-5): ")
+def show_menu():
+    print("\n===Smart Farm Task Organizer===")
+    print("1. เพิ่มงานในฟาร์ม")
+    print("2. แสดงรายการงานทั้งหมด")
+    print("3. ลบงาน")
+    print("4. สรุปจำนวนงานในแต่ละประเภท")
+    print("5. ออกจากโปรแกรม")
 
-        if choice == "1":
-            add_task(farm_tasks)
-        elif choice == "2":
-            show_tasks(farm_tasks)
-        elif choice == "3":
-            delete_task(farm_tasks)
-        elif choice == "4":
-            summarize_tasks(farm_tasks)
-        elif choice == "5":
-            print("ขอบคุณที่ใช้โปรแกรม Smart farm!")
-            break
-        else:
-            print("กรุณาเลือกเมนูให้ถูกต้อง (1-5)")
+def add_task():
+    name = input("ชื่องาน: ")
+    category = input("ประเภท (พืช/สัตว์): ")
+    tasks.append({"name": name, "category": category})
+    print(f"✅ เพิ่มงาน '{name}' แล้ว")
 
-def add_task(tasks):
-    name = input("ป้อนชื่องาน: ")
-    task_type = input("ประเภทของงาน (เช่น พืชฝผัก/ปสุสัต/อื่นๆ): ")
-    from datetime import datetime
-    tasks.append({'name': name, 'type': task_type})
-    print("เพิ่มงานเรียบร้อยแล้ว")
-
-def show_tasks(tasks):
+def show_tasks():
     if not tasks:
-        print("ยังไม่มีงานในระบบ")
+        print("🚫 ยังไม่มีงานในระบบ")
     else:
-        print("\nรายการงานทั้งหมด:")
-        for i, task in enumerate(tasks):
-            print(f"{i + 1}. {task['name']} (ประเภท: {task['type']})")
+        print("\n📋 รายการงานทั้งหมด:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task['name']} ({task['category']})")
 
-def delete_task(tasks):
-    show_tasks(tasks)
+def delete_task():
+    show_tasks()
     if tasks:
         try:
-            index = int(input("กรุณาระบุหมายเลขงานที่ต้องการลบ: ")) - 1
-            if 0 <= index < len(tasks):
-                removed = tasks.pop(index)
-                print(f"ลบงาน '{removed['name']}' เรียบร้อยแล้ว")
-            else:
-                print("หมายเลขไม่ถูกต้อง")
-        except ValueError:
-            print("กรุณาใส่ตัวเลขเท่านั้น")
+            index = int(input("เลือกหมายเลขงานที่ต้องการลบ: ")) - 1
+            removed = tasks.pop(index)
+            print(f"🗑 ลบงาน '{removed['name']}' แล้ว")
+        except (IndexError, ValueError):
+            print("❌ เลือกไม่ถูกต้อง")
 
-def summarize_tasks(tasks):
-    summary = {}
+def summarize_tasks():
+    summary = defaultdict(int)
     for task in tasks:
-        summary[task['type']] = summary.get(task['type'], 0) + 1
+        summary[task['category']] += 1
 
-    if not summary:
-        print("ยังไม่มีงานในระบบ")
-    else:
-        print("\nสรุปจำนวนงานในแต่ละประเภท:")
-        for task_type, count in summary.items():
-            print(f"- {task_type}: {count} งาน")
+    print("\n📊 สรุปงานตามประเภท:")
+    for category, count in summary.items():
+        print(f"- {category}: {count} งาน")
+
+def main():
+    while True:
+        show_menu()
+        choice = input("เลือกเมนู (1-5): ")
+        if choice == '1':
+            add_task()
+        elif choice == '2':
+            show_tasks()
+        elif choice == '3':
+            delete_task()
+        elif choice == '4':
+            summarize_tasks()
+        elif choice == '5':
+            print("👋 ขอบคุณที่ใช้โปรแกรม Smart Farm! ")
+            sys.exit()
+        else:
+            print("❗ กรุณาเลือกเมนู 1-5")
 
 if __name__ == "__main__":
     main()
