@@ -1,10 +1,10 @@
 import sys
 
 def downcase_all(*args):
-    if args:
+    if not args:
+        print("none")
+    else:
         for text in args:
             print(text.lower())
-    else:
-        print("none")
 
 downcase_all(*sys.argv[1:])
