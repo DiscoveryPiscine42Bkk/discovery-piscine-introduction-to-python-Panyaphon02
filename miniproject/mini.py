@@ -12,9 +12,9 @@ def show_menu():
     print("5. ออกจากโปรแกรม")
 
 def add_task():
-    name = input("(\U0001F4CC)ชื่องาน: ")
-    category = input("(\U0001F33E))ประเภท (พืช,สัตว์,อื่นๆ): ")
-    category = input("(\U0001F4C5)ป้อนวันที่ : ")
+    name = input("\U0001F4CCชื่องาน: ")
+    category = input("\U0001F33Eประเภท (พืช,สัตว์,อื่นๆ): ")
+    category = input("\U0001F4C5ป้อนวันที่ : ")
     tasks.append({"name": name, "category": category})
     print(f"✅ เพิ่มงาน '{name}' แล้ว")
 
