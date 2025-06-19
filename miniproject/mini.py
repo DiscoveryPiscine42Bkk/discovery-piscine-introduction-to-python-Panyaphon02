@@ -14,8 +14,8 @@ def show_menu():
 def add_task():
     name = input("\U0001F4CCชื่องาน: ")
     category = input("\U0001F33Eประเภท (พืช,สัตว์,อื่นๆ): ")
-    category = input("\U0001F4C5ป้อนวันที่ : ")
-    tasks.append({"name": name, "category": category})
+    date = input("\U0001F4C5ป้อนวันที่ : ")
+    tasks.append({"name": name, "category": category, "date": date})
     print(f"✅ เพิ่มงาน '{name}' แล้ว")
 
 def show_tasks():
